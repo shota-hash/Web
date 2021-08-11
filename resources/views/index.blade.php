@@ -131,17 +131,18 @@ input, select {
             @foreach ($items as $item)
             <tr>
                 <form action="/todo/update" method="POST" class="update">
+                @csrf
                 <td>{{$item->created_at}}</td>
             　  <td class="table-text">
             　　    <input type="text" name="content" class="contain_wrapper" value={{$item->content}}>
             　  </td>
                 <td>
-                @csrf
                 <input type="submit" value="更新" class="contain_button_edit">
                 </td>
                 </form>
                 <td><form action='/todo/delete'method="POST" class="delete">
                 @csrf
+                <input type="hidden" name="content" class="contain_wrapper" value={{$item->content}}>
                 <button type="submit" class="contain_button_delete">削除</button></td>
                 </form></td>
             </tr>
