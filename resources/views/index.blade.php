@@ -101,6 +101,98 @@ hr {
 input, select {
     vertical-align:middle;
 }
+* {
+    box-sizing: border-box;
+}
+.all {
+    background-color: #2d197c;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+}
+.content {
+    background-color: white;
+    width: 50vw;
+    padding: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+}
+.content_wrapper {
+    font-weight: bold;
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+.contain {
+    margin-bottom: 30px;
+    display: flex;
+}
+.contain_wrappers {
+    width: 70%;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+}
+.contain_button {
+    text-align: left;
+    border: 2px solid #dc70fa;
+    font-size: 12px;
+    color: #dc70fa;
+    background-color: #fff;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.4s;
+    margin-left: 30px;
+}
+table {
+    text-align: center;
+    width: 100%;
+}
+th {
+    font-weight: bold;
+}
+tr {
+    height: 50px;
+}
+.contain_wrapper {
+    width: 90%;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+.contain_button_edit {
+    text-align: left;
+    border: 2px solid #fa9770;
+    font-size: 12px;
+    color: #fa9770;
+    background-color: #fff;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.4s;
+}
+.contain_button_delete {
+    text-align: left;
+    border: 2px solid #71fadc;
+    font-size: 12px;
+    color: #71fadc;
+    background-color: #fff;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+
+
 
 </style>
 <body>
@@ -118,7 +210,7 @@ input, select {
     @endif
     <form action="/todo/create" method="POST" class="contain">
     @csrf
-    <input type="text" name="content" class="contain_wrapper">
+    <input type="text" name="content" class="contain_wrappers">
     <input type="submit" value="追加" class="contain_button">
     </form>
     <table>
@@ -133,17 +225,16 @@ input, select {
                 <form action="/todo/update" method="POST" class="update">
                 @csrf
                 <td>{{$item->created_at}}</td>
-            　  <td class="table-text">
+            　   <td class="big">
             　　    <input type="text" name="content" class="contain_wrapper" value={{$item->content}}>
-            　  </td>
+            　   </td>
                 <td>
-                <input type="submit" value="更新" class="contain_button_edit">
+                    <button class="contain_button_edit">更新</button>
                 </td>
                 </form>
                 <td><form action='/todo/delete'method="POST" class="delete">
                 @csrf
-                <input type="hidden" name="content" class="contain_wrapper" value={{$item->content}}>
-                <button type="submit" class="contain_button_delete">削除</button></td>
+                <button class="contain_button_delete">削除</button></td>
                 </form></td>
             </tr>
             @endforeach
