@@ -227,6 +227,7 @@ tr {
                 <td>{{$item->created_at}}</td>
             　   <td class="big">
             　　    <input type="text" name="content" class="contain_wrapper" value={{$item->content}}>
+            <input type="hidden" name="id" value={{$item->id}}>
             　   </td>
                 <td>
                     <button class="contain_button_edit">更新</button>
@@ -234,6 +235,7 @@ tr {
                 </form>
                 <td><form action='/todo/delete'method="POST" class="delete">
                 @csrf
+                <input type="hidden" name="id" value={{$item->id}}>
                 <button class="contain_button_delete">削除</button></td>
                 </form></td>
             </tr>
